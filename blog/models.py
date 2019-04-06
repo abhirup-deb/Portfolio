@@ -1,8 +1,11 @@
 from django.db import models
+from django.utils import timezone
+from django.conf import settings
 
 class Blog(models.Model):
 	title = models.CharField(max_length=250)
-	published_date = models.DateTimeField()
+	pub_date = models.DateTimeField(auto_now_add=True,
+            blank=True, null=True)
 	body = models.TextField()
 	image = models.ImageField(upload_to='images/')
 
@@ -12,5 +15,5 @@ class Blog(models.Model):
 	def summary(self):
 		return self.body[:140]
 
-	def publish(self):
-		return self.published_date.strftime('%b %d %Y')
+	def pub_date_pretty(self):
+		return self.pub_date.strftime('%b %e %Y')

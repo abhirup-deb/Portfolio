@@ -32,10 +32,10 @@
               <a class="nav-link" href="https://www.linkedin.com/in/abhirup-deb-84656717b/">LinkedIn</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% static 'resume.pdf' %}">Resume</a>
+              <a class="nav-link" href="{% static 'Resume.docx' %}">Resume</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="{% url 'home' %}">Home</a>
+              <a class="nav-link " href="{% url 'home' %}">Home</a>
             </li>
             <li class="nav-item">
             </li>
@@ -51,12 +51,10 @@
       <br />
       <h2>Latest Posts</h2>
       <hr />
-          {% for blog in blogs %}
-
-
+          {% for blog in blogs.all %}
                <div class="card-body">
-               <a href="{% url 'detail' blog.id%}"> <p class="card-text">{{ blog.title }}</p></a>
-               {{ blog.published_date }}
+               <p class="card-text">{{ blog.title }}</p>
+               {{ blog.pub_date_pretty }}
                <br />
                <img class="img-fluid" src="{{ blog.image.url }}" height=200 width=200/>
                <p>{{ blog.summary }}</p>
@@ -68,7 +66,7 @@
 
     <footer class="text-muted">
       <div class="container">
-       <p></center>© by Abhirup Deb {% now "Y" %}</center></p>
+       <p><center>© by Abhirup Deb {% now "Y" %}</center></p>
       </div>
     </footer>
 
